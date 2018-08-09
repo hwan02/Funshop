@@ -1,2 +1,1 @@
-commit;
-commit;
+select * from tab;
