@@ -21,6 +21,8 @@ public class Notice_Action extends Action{
 			HttpServletResponse response) throws Exception {
 		String action = request.getParameter("action");
 		String write = request.getParameter("write");
+		
+		//액션이 잘 들어 왔는지 확인
 		System.out.println("action=" + action);
 
 		NoticeDAO dao = new NoticeDAO();
