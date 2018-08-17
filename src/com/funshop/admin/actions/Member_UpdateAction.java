@@ -27,7 +27,6 @@ public class Member_UpdateAction extends Action {
 		member.setEmail(request.getParameter("email"));
 		member.setPhone(request.getParameter("phone"));
 		member.setAddr(request.getParameter("addr"));
-		member.setNo(Integer.parseInt(request.getParameter("no")));
 
 		System.out.println("DB 전달확인" + member);
 

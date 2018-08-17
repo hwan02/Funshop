@@ -17,9 +17,9 @@ public class Member_DeleteAction extends Action {
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		int no = Integer.parseInt(request.getParameter("no"));
+		String id = request.getParameter("id");
 		MemberDAO dao = new MemberDAO();
-		dao.delete(no);
+		dao.delete(id);
 
 		return mapping.findForward("check");
 	}

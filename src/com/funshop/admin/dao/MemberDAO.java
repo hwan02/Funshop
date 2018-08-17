@@ -37,11 +37,11 @@ public class MemberDAO {
 	}// update
 
 	// 회원정보 필요한 부분만
-	public MemberVO select(int no) {
+	public MemberVO select(String id) {
 		MemberVO member = null;
 
 		try {
-			member = (MemberVO) sqlMap.queryForObject("member.select", no);
+			member = (MemberVO) sqlMap.queryForObject("member.select", id);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -49,10 +49,10 @@ public class MemberDAO {
 		return member;
 	}// select
 
-	//회원정보 삭제
-	public boolean delete(int no) {
+	// 회원정보 삭제
+	public boolean delete(String id) {
 		try {
-			int numDel = sqlMap.delete("member.delete", no);
+			int numDel = sqlMap.delete("member.delete", id);
 			if (numDel == 1) {
 				return true;
 			}

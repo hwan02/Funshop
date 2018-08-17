@@ -3,7 +3,6 @@ package com.funshop.admin.vo;
 import java.sql.Date;
 
 public class MemberVO {
-	private int no;
 	private String id;
 	private String pw;
 	private String name;
@@ -16,9 +15,8 @@ public class MemberVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVO(int no, String id, String pw, String name, String email, String phone, String addr, Date wdate) {
+	public MemberVO(String id, String pw, String name, String email, String phone, String addr, Date wdate) {
 		super();
-		this.no = no;
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -30,16 +28,8 @@ public class MemberVO {
 
 	@Override
 	public String toString() {
-		return "MemberVO [no=" + no + ", id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", phone="
-				+ phone + ", addr=" + addr + ", wdate=" + wdate + "]";
-	}
-
-	public int getNo() {
-		return no;
-	}
-
-	public void setNo(int no) {
-		this.no = no;
+		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", phone=" + phone
+				+ ", addr=" + addr + ", wdate=" + wdate + "]";
 	}
 
 	public String getId() {
@@ -97,7 +87,8 @@ public class MemberVO {
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 	}
-
+	
+	
 	
 
 }

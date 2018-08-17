@@ -32,6 +32,43 @@ public class Notice_Action extends Action{
 			List<NoticeVO> list = dao.selectAll(map);
 			request.setAttribute("list", list);
 
+			
+			
+			
+			
+			
+			// 총페이지 갯수 구하기
+			// int totalRecordCount//(전체 레코드수) : 32
+			int pageCount = 10;// (한 화면에 보여질 레코드수) : 10
+			int totalPage = dao.selectRecordCount(pageCount);
+
+			// 페이지 정보
+			String page = request.getParameter("page");// "1" "2" "3"
+
+
+			if (page == null) {// page정보가 없다면
+				response.sendRedirect("/Funshop/admin_notice/noticeList.do?action=list&page=1");
+				// 1페이지 정보를 가지고 Controller를 재호출!!
+				return forward;
+			}
+
+			int pageNo = Integer.parseInt(page);
+
+			// 시작글번호 ~ 끝글번호
+			int end = pageNo * pageCount;// 10;
+			int start = end - (pageCount - 1);// 9;
+
+			Map<String, Integer> map2 = new HashMap<>();
+			map2.put("start", start);
+			map2.put("end", end);
+			System.out.println(start);
+			System.out.println(end);
+			
+			// 전체 게시물 정보 조회
+			request.setAttribute("list", dao.selectPage(map2));
+			request.setAttribute("totalPage", totalPage);
+			
+			
 			forward = mapping.findForward("list");
 		} else if (action.equals("editForm")) {
 			forward = mapping.findForward("noticeList");

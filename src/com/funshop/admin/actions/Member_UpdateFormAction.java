@@ -18,13 +18,13 @@ public class Member_UpdateFormAction extends Action{
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		int no = Integer.parseInt(request.getParameter("no"));
+		String id = request.getParameter("id");
 		
 		//번호확인
-		System.out.println(no);
+		System.out.println(id);
 		
 		MemberDAO dao = new MemberDAO();
-		MemberVO member = dao.select(no);
+		MemberVO member = dao.select(id);
 		request.setAttribute("member", member);
 		return mapping.findForward("editForm");
 		

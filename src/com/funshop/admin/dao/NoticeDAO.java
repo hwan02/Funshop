@@ -43,23 +43,23 @@ public class NoticeDAO {
 		return sqlMap.queryForList("notice.selectAll", map);
 	}// selectAll
 
-	public boolean update(NoticeVO notice){
-			try {
-				int numUp = sqlMap.update("notice.update",notice);
-				if (numUp == 1) {
-					return true;
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
+	public boolean update(NoticeVO notice) {
+		try {
+			int numUp = sqlMap.update("notice.update", notice);
+			if (numUp == 1) {
+				return true;
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 		return false;
 	}// update
-	
+
 	public boolean delete(int no) {
 		try {
-			int numDel = sqlMap.delete("notice.delete",no);
-			if(numDel == 1) {
+			int numDel = sqlMap.delete("notice.delete", no);
+			if (numDel == 1) {
 				return true;
 			}
 		} catch (SQLException e) {
@@ -67,4 +67,22 @@ public class NoticeDAO {
 		}
 		return false;
 	}// delete
+
+	public int selectRecordCount(int pageCount) throws SQLException {
+		// pageCount : 한 페이지에 보여질 행의수
+		return (Integer) sqlMap.queryForObject("notice.selectRecordCount", pageCount);
+	}
+
+	public List<NoticeVO> selectPage(Map<String, Integer> map) {
+		List<NoticeVO> list = null;
+		try {
+			long start = System.currentTimeMillis();
+			list = sqlMap.queryForList("notice.selectPage", map);
+			long end = System.currentTimeMillis();
+			System.out.println("조회시간: " + (end - start));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}// selectPage
 }
