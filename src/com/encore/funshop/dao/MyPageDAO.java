@@ -63,9 +63,10 @@ public class MyPageDAO {
 		}
 	}
 	
-	public boolean insertAsking(String member_id, String asking_content) {
+	public boolean insertAsking(String member_id_from, String member_id_to, String asking_content) {
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("member_id", member_id);
+		map.put("member_id_from", member_id_from);
+		map.put("member_id_to", member_id_to);
 		map.put("asking_content", asking_content);
 		try {
 			smc.insert("myPage.insertAsking", map);
@@ -76,14 +77,52 @@ public class MyPageDAO {
 		}
 	}
 	
-	public List<Asking> selectAsking(String member_id, String admin_id) {
+	public List<Asking> selectAsking(String member_id_from, String member_id_to) {
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("member_id", member_id);
-		map.put("admin_id", admin_id);
+		map.put("member_id_from", member_id_from);
+		map.put("member_id_to", member_id_to);
+		map.put("asking_check", "읽음");
 		try {
+			smc.update("myPage.checkAsking", map);
 			return smc.queryForList("myPage.selectAsking", map);		
 		} catch (SQLException e) {
 			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public boolean deleteAsking(int asking_no) {
+		try {
+			if(smc.delete("myPage.deleteAsking", asking_no) > 0) return true;
+			else return false;
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean updateAsking(int asking_no, String asking_content) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("asking_no", asking_no);
+		map.put("asking_content", asking_content);
+		map.put("asking_check", "읽지 않음");
+		try {
+			if(smc.update("myPage.updateAsking", map) > 0) return true;
+			else return false;
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public List<Asking> selectAskingTo(String member_id_to) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("member_id_to", member_id_to);
+		map.put("asking_check", "읽지 않음");
+		try {
+			return smc.queryForList("myPage.selectAskingTo", map);
+		} catch (SQLException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

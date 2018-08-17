@@ -25,9 +25,6 @@
 				}
 			});
 		});
-		$('#text_userTime').click(function() {
-			if($(this).val()=='년/월/일-년/월/일') $(this).val('');
-		});
 	});
 </script>
 <center>
@@ -44,7 +41,7 @@
 			<td><button name="bt_time"></button></td><!-- 이번달-4 -->
 			<td><button name="bt_time"></button></td><!-- 이번달-5 -->
 			<td width="10"></td>
-			<td><input id="text_userTime" type="text" value="년/월/일-년/월/일"></td>
+			<td><input id="text_userTime" type="text" placeholder="년/월/일-년/월/일"></td>
 			<td><button name="bt_time" value="userTime">조회하기▶</button></td>
 		</tr>
 	</table><br>

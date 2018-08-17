@@ -4,7 +4,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<% session.setAttribute("member_id", "gildong"); %>
+<% 
+	session.setAttribute("id", "gildong"); //for test
+	String id = (String)session.getAttribute("id");
+			
+	if(id.equals("admin")) session.setAttribute("isAdmin", true);
+	else session.setAttribute("isAdmin", false);
+	session.setAttribute("member_id", id);
+%>
 <script type="text/javascript" src="/Funshop/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function () {
@@ -30,7 +37,7 @@
 		<hr>
 		<table border="1" align="left" style="border-collapse: collapse;">
 			<tr valign="top" align="left">
-				<td width="180px" height="800px"><tiles:insert attribute="menu"/></td>
+				<td width="190px" height="800px"><tiles:insert attribute="menu"/></td>
 				<td width="840px"><tiles:insert attribute="body"/></td>
 			</tr>
 			<tfoot><tr><td colspan="2"><br></td></tr></tfoot>

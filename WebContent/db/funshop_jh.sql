@@ -92,9 +92,10 @@ drop table asking;
 create table asking (
 	asking_no number constraints asking_pk primary key, --문의번호
 	asking_date date not null, --문의 날짜
-	member_id varchar2(20) not null, --구매자아이디
+	member_id_from varchar2(20) not null, --보내는아이디
+	member_id_to varchar2(20) not null, --받는아이디
 	asking_content varchar2(300) not null, --문의내용
-	asking_check varchar2(30) default '읽지않음' --확인여부
+	asking_check varchar2(30) default '읽지 않음' --확인여부
 );
 
 drop sequence asking_seq;

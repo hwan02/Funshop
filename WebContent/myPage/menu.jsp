@@ -18,6 +18,6 @@
 		<a href="/Funshop/myPage/userInfo.do" style="text-decoration: none;"><font color="#551A8B">개인정보변경</font></a>
 	</li>
 	<li style="margin: 5px">
-		<a href="/Funshop/myPage/asking.do" style="text-decoration: none;"><font color="#551A8B">실시간문의</font></a>
+			<a href="/Funshop/myPage/asking.do" style="text-decoration: none;"><font color="#551A8B">실시간문의</font></a>
 	</li>
 </ul>
