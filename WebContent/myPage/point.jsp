@@ -8,12 +8,24 @@
 			switch(level) {
 				case '초급': size=10; mineNum=10; break;
 				case '중급': size=16; mineNum=40; break;
-				case '고급': size=22; mineNum=99; break;
+				case '고급': size=22; mineNum=100; break;
 			}		
 			location.replace('/Funshop/myPage/point.do?size='+size+'&mineNum='+mineNum);
 		});
 		$('#div_minSearch').show(1000);
 	});
+	function afterMineSearchWin() {
+		$.ajax({
+			url:'/Funshop/myPage/pointResult.do',
+			data:{"action":"insert",
+				  "point_point":mineNum},
+			type:'POST',
+			success:function() {
+				alert('포인트 '+mineNum+'점이 적립되었습니다 :)');
+				location.replace('/Funshop/myPage/point.do');
+			}
+		});
+	}
 </script>
 <style type="text/css">
 	#div_minSearch {

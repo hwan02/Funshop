@@ -7,6 +7,14 @@
 			$('#regBuy_editForm').show();
 			$(this).parent().parent().after(document.getElementById('regBuy_editForm'));
 		});
+		$('#bt_regBuy_edit_confirm').click(function() {
+			alert("다음 달 부터 적용됩니다 :)");
+			$('#regBuy_editForm').hide();
+		});
+		$('#bt_regBuy_hold').click(function() {
+			alert("이번달 배송에서 제외되었습니다 :)");
+			$('#regBuy_editForm').hide();
+		});
 	});
 </script>
 <center>
@@ -32,8 +40,8 @@
 						<tr align="center">
 							<td>${status.count }</td>
 							<td>${regBuy.regBuy_date }</td>
-							<td>${regBuy.product_no }번 상품에 대한 정기구매 정보</td>
-							<td><button name="bt_regBuy_edit">수정</button> <button>취소</button></td>
+							<td>상품에 대한 정기구매 정보</td>
+							<td><button name="bt_regBuy_edit">수정</button> <button>삭제</button></td>
 						</tr>
 					</c:forEach>
 					</table>
@@ -41,10 +49,10 @@
 			</div>
 		</td></tr>
 		<tr style="display: none;" id="regBuy_editForm" align="center"><td colspan="4">
-			수량 <input type="text">
-			배송일 <input type="date">
-			<button>확인</button>
-			<button>이번달만 구매중지</button>
+			수량 <input type="text" value="2" style="width: 30px;">개<br>
+			매달<input type="date" value="1" style="width: 25px">일 배송<br>
+			<button id="bt_regBuy_edit_confirm">확인</button>
+			<button id="bt_regBuy_hold">이번달만 구매중지</button>
 		</td></tr>
 	</table>
 </center>

@@ -39,11 +39,17 @@
 		});
 		
 		$('#div_askingFrame').on('click','div[name=div_myAsking]',function() {
-			if(flag_editing) return;
+			if(flag_editing) { //이미 수정 중이라면
+				alert('메시지 편집을 끝내주세요 :)');
+				return;
+			}
 			editChat(this);
 		});
 		$('#div_askingFrame').on('contextmenu','div[name=div_myAsking]',function() {
-			if(flag_editing) return;
+			if(flag_editing) { //이미 수정 중이라면
+				alert('메시지 편집을 끝내주세요 :)');
+				return false;
+			}
 			editChat(this);
 			return false;
 		});
@@ -106,6 +112,9 @@
 								var hidden_button = $('<button></button>')
 								$('#div_askingFrame').append(hidden_button);
 								hidden_button.focus().css({"display":"none"});
+								
+								//var objDiv = document.getElementById("div_askingFrame");
+								//objDiv.scrollTop = objDiv.scrollHeight;
 							}
 						}
 					}
@@ -172,7 +181,7 @@
 		$('#bt_set_target').click(function() {
 			member_id_to = $('#target_id').val();
 		});
-		if(${isAdmin }) reqListTo();
+		if(${isAdmin }) { reqListTo(); }
 	});
 	function reqListTo() {
 		$.ajax({

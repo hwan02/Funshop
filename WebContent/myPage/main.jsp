@@ -31,11 +31,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>마이페이지</title>
 </head>
-<body style="width: 1200px;">
+<body style="width: 1100px;">
 	<center>
 		<br><br><br><br>
 		<hr>
-		<table border="1" align="left" style="border-collapse: collapse;">
+		<table border="1" align="center" style="border-collapse: collapse;">
 			<tr valign="top" align="left">
 				<td width="190px" height="800px"><tiles:insert attribute="menu"/></td>
 				<td width="840px"><tiles:insert attribute="body"/></td>

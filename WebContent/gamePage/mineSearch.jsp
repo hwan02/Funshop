@@ -120,6 +120,9 @@
 				$(this).off(); //버튼을 눌러도 반응하지 않게
 			});
 			alert('게임승리');
+			if(afterMineSearchWin) {
+				afterMineSearchWin();
+			}
 		}
 
 		function gameOver() {

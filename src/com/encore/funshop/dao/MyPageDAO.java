@@ -8,6 +8,7 @@ import java.util.List;
 import com.encore.funshop.vo.Asking;
 import com.encore.funshop.vo.Basket;
 import com.encore.funshop.vo.BuyHis;
+import com.encore.funshop.vo.Product;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 import iba.MySqlMapClient;
@@ -27,7 +28,7 @@ public class MyPageDAO {
 		try {
 			return smc.queryForList("myPage.selectBuyHistory", map);
 		} catch (Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -41,6 +42,25 @@ public class MyPageDAO {
 		}
 	}
 	
+	public boolean deleteBasket(int basket_no) {
+		try {
+			if(smc.delete("myPage.deleteBasket", basket_no) > 0 ) return true;
+			else return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public Product selectProduct(int product_no) {
+		try {
+			return (Product) smc.queryForObject("myPage.selectProduct", product_no);
+		} catch (Exception e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+ 	
 	public List<Basket> selectRegBuy(String member_id) {
 		try {
 			return smc.queryForList("myPage.selectRegBuy", member_id);
@@ -63,6 +83,19 @@ public class MyPageDAO {
 		}
 	}
 	
+	public boolean insertPoint(String member_id, int point_point) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("member_id", member_id);
+		map.put("point_point", point_point);
+		try {
+			smc.insert("myPage.insertPoint", map);
+			return true;
+		} catch (Exception e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public boolean insertAsking(String member_id_from, String member_id_to, String asking_content) {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("member_id_from", member_id_from);
@@ -71,7 +104,7 @@ public class MyPageDAO {
 		try {
 			smc.insert("myPage.insertAsking", map);
 			return true;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			//e.printStackTrace();
 			return false;
 		}
@@ -85,7 +118,7 @@ public class MyPageDAO {
 		try {
 			smc.update("myPage.checkAsking", map);
 			return smc.queryForList("myPage.selectAsking", map);		
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			//e.printStackTrace();
 			return null;
 		}
@@ -95,7 +128,7 @@ public class MyPageDAO {
 		try {
 			if(smc.delete("myPage.deleteAsking", asking_no) > 0) return true;
 			else return false;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			//e.printStackTrace();
 			return false;
 		}
@@ -109,7 +142,7 @@ public class MyPageDAO {
 		try {
 			if(smc.update("myPage.updateAsking", map) > 0) return true;
 			else return false;
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			//e.printStackTrace();
 			return false;
 		}
@@ -121,8 +154,8 @@ public class MyPageDAO {
 		map.put("asking_check", "읽지 않음");
 		try {
 			return smc.queryForList("myPage.selectAskingTo", map);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		} catch (Exception e) {
+			//e.printStackTrace();
 			return null;
 		}
 	}
