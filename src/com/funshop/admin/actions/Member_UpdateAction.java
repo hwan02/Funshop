@@ -1,5 +1,7 @@
 package com.funshop.admin.actions;
 
+import java.sql.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,13 +22,16 @@ public class Member_UpdateAction extends Action {
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		MemberVO member = new MemberVO();
+		MemberVO member = new MemberVO();		
 		member.setId(request.getParameter("id"));
 		member.setPw(request.getParameter("pw"));
 		member.setName(request.getParameter("name"));
 		member.setEmail(request.getParameter("email"));
 		member.setPhone(request.getParameter("phone"));
 		member.setAddr(request.getParameter("addr"));
+		member.setQuestion(request.getParameter("question"));
+		member.setAnswer(request.getParameter("answer"));
+		member.setRank(request.getParameter("rank"));
 
 		System.out.println("DB 전달확인" + member);
 

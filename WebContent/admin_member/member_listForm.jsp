@@ -6,8 +6,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet"   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <title>Funshop_회원정보 관리</title>
+<script type="text/javascript">
+	$(function() {
+		$("input").keyup(function() {
+			var search = $(this).val().toUpperCase();
+			$("#tbody tr").filter(function() { //모든 tr
+				var txt = $(this).text().toUpperCase();
+				$(this).toggle(txt.indexOf(search) > -1);
+			});
+		});
+	});//document.ready
+</script>
 </head>
 <%--member_listForm.jsp--%>
 <body>
@@ -15,51 +27,48 @@
 		<br>
 		<h1>회원정보 관리 : 목록</h1>
 		<hr class="container">
-		<table cellpadding="5" class="table, container" >
+		<a href="/Funshop/admin_main/main_view.do">홈</a>
+		<br>
+		<input type="search" placeholder="검색" >
+		<br><br>
+		<table cellpadding="5" class="container" >
 			<thead>
 				<tr bgcolor="skyblue">
-					<th>번호</th>
-					<th>회원 아이디</th>
-					<th>회원 이름</th>
-					<th>회원 이메일</th>
-					<th>회원 폰 번호</th>
-					<th>회원 주소</th>
-					<th>회원 가입 일짜</th>
-					<th>수정 및 삭제</th>
+					<th>아이디</th>
+					<th>비밀번호</th>
+					<th>이름</th>
+					<th>이메일</th>
+					<th>폰 번호</th>
+					<th>주소</th>
+					<th>비밀번호 질문</th>
+					<th>비밀번호 답변</th>
+					<th>등급</th>
+					<th>가입 일짜</th>
+					<th>삭제</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="tbody">
 				<c:forEach items="${list }" var="member">
-					<tr>
-						<td>${member.no }</td>
+					<tr>	
 						<td>${member.id }</td>
 						<td>${member.name }</td>
+						<td>${member.pw }</td>
 						<td>${member.email }</td>
 						<td>${member.phone }</td>
 						<td>${member.addr }</td>
+						<td>${member.question }</td>
+						<td>${member.answer }</td>
+						<td>${member.rank }</td>
 						<td>${member.wdate }</td>
-						<td><a href="/Funshop/admin_member/memberEdit.do?no=${member.no }">수정 및 삭제</a> </td>
+						<td><a href="/Funshop/admin_member/memberEdit.do?id=${member.id }">삭제</a> </td>
+					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
-<%-- 		<br>
-		<br>
-
-		<c:if test="${param.page==1 }">이전</c:if>
-		<c:if test="${param.page>1 }">
-			<a href="control?action=list&page=${param.page-1 }">이전</a>
-		</c:if>
-
-		<c:choose>
-			<c:when test="${param.page==totalPage}">다음</c:when>
-			<c:otherwise>
-				<a href="control?action=list&page=${param.page+1 }">다음</a>
-			</c:otherwise>
-		</c:choose>
-		<hr>
-		<c:forEach begin="1" end="${totalPage }" var="i">
-       [<a href="control?action=list&page=${i }">${i }</a>]
-    </c:forEach> --%>
+		<hr class="container">
+<%-- 		<c:forEach begin="1" end="${totalPage }" var="i">
+			[<a href="/Funshop/admin_member/memberList.do?action=list&page=${i }">${i }</a>]
+    	</c:forEach> --%>
 	</center>
 </body>
 </html>

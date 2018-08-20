@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.funshop.admin.vo.MemberVO;
-import com.funshop.admin.vo.NoticeVO;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 import iba.MySqlMapClient;
@@ -62,4 +61,23 @@ public class MemberDAO {
 		return false;
 	}// delete
 
+	
+	
+	public int selectRecordCount(int pageCount) throws SQLException {
+		// pageCount : 한 페이지에 보여질 행의수
+		return (Integer) sqlMap.queryForObject("member.selectRecordCount", pageCount);
+	}
+
+	public List<MemberVO> selectPage(Map<String, Integer> map) {
+		List<MemberVO> list = null;
+		try {
+			long start = System.currentTimeMillis();
+			list = sqlMap.queryForList("member.selectPage", map);
+			long end = System.currentTimeMillis();
+			System.out.println("조회시간: " + (end - start));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}// selectPage
 }// main

@@ -4,12 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 <title>Funshop_회원정보 관리</title>
 <script type="text/javascript">
 	function Delete() {
-		location.href = "/Funshop/admin_member/delete.do?no=${member.no}";
+		location.href = "/Funshop/admin_member/delete.do?id=${member.id}";
 	}
 </script>
 <style type="text/css">
@@ -17,8 +16,8 @@
 	text-align: center;
 }
 
-.table {
-	table-layout: auto;
+tr{
+	text-align: left;
 }
 </style>
 </head>
@@ -31,15 +30,15 @@
 	<br>
 	<br>
 	<form action="/Funshop/admin_member/update.do?action=listForm"
-		method="post" name="editForm" class="container">
-		<input type="hidden" name="no" value="${member.no }">
-		<table border="1" class="table">
+		method="post" name="editForm">
+		<table border="1" align="center">
 			<tr>
 				<th>아이디</th>
-				<td><input type="text" 
+				<td>
+					<input type="text" 
 						   name="id"
-						   placeholder="아이디 작성"
-						   size="32.7" value="${member.id }">
+						   size="32.7" value="${member.id }"
+						   disabled>
 				</td>
 			</tr>
 
@@ -47,8 +46,8 @@
 				<th>비밀번호</th>
 				<td><input type="text"
 						   name="pw"
-						   placeholder="비밀번호 작성"
-						   size="32.7" value="${member.pw }">
+						   size="32.7" value="${member.pw }" 
+						   disabled>
 				</td>
 			</tr>
 
@@ -56,8 +55,8 @@
 				<th>이름</th>
 				<td><input type="text"
 						   name="name"
-						   placeholder="이름 작성"
-						   size="32.7" value="${member.name }">
+						   size="32.7" value="${member.name }"
+						   disabled>
 				</td>
 
 			</tr>
@@ -66,8 +65,8 @@
 				<th>이메일</th>
 				<td><input type="text"
 						   name="email"
-						   placeholder="이메일 작성"
-						   size="32.7" value="${member.email }">
+						   size="32.7" value="${member.email }"
+						   disabled>
 				</td>
 			</tr>
 			
@@ -75,8 +74,8 @@
 				<th>폰 번호</th>
 				<td><input type="text"
 						   name="phone"
-						   placeholder="폰 번호 작성"
-						   size="32.7" value="${member.phone }">
+						   size="32.7" value="${member.phone }"
+						   disabled>
 				</td>
 			</tr>
 			
@@ -84,14 +83,41 @@
 				<th>주소</th>
 				<td><input type="text"
 						   name="addr"
-						   placeholder="주소작성"
-						   size="32.7" value="${member.addr }">
+						   size="32.7" value="${member.addr }"
+						   disabled>
+				</td>
+			</tr>	
+			
+			<tr>
+				<th>비밀번호 질문</th>
+				<td><input type="text"
+						   name="question"
+						   size="32.7" value="${member.question }"
+						   disabled>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>비밀번호 질문 답</th>
+				<td><input type="text"
+						   name="answer"
+						   size="32.7" value="${member.answer}"
+						   disabled>
+				</td>
+			</tr>
+			
+			<tr>
+				<th>등급</th>
+				<td><input type="text"
+						   name="rank"
+						   size="32.7" value="${member.rank }"
+						   disabled>
 				</td>
 			</tr>
 		</table>
 		<br><br>
-		<input type="submit" value="수정"class="btn btn-success">
-		<input type="reset" value="리셋" class="btn btn-secondary">
+		<!-- <input type="submit" value="수정"class="btn btn-success">
+		<input type="reset" value="리셋" class="btn btn-secondary"> -->
 		<input type="button" value="삭제" onclick="Delete()" class="btn btn-danger">
 	</form>
 </body>

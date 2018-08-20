@@ -9,13 +9,17 @@ public class MemberVO {
 	private String email;
 	private String phone;
 	private String addr;
+	private String question;
+	private String answer;
+	private String rank;
 	private Date wdate;
 
 	public MemberVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVO(String id, String pw, String name, String email, String phone, String addr, Date wdate) {
+	public MemberVO(String id, String pw, String name, String email, String phone, String addr, String question,
+			String answer, String rank, Date wdate) {
 		super();
 		this.id = id;
 		this.pw = pw;
@@ -23,13 +27,17 @@ public class MemberVO {
 		this.email = email;
 		this.phone = phone;
 		this.addr = addr;
+		this.question = question;
+		this.answer = answer;
+		this.rank = rank;
 		this.wdate = wdate;
 	}
 
 	@Override
 	public String toString() {
 		return "MemberVO [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", phone=" + phone
-				+ ", addr=" + addr + ", wdate=" + wdate + "]";
+				+ ", addr=" + addr + ", question=" + question + ", answer=" + answer + ", rank=" + rank + ", wdate="
+				+ wdate + "]";
 	}
 
 	public String getId() {
@@ -80,6 +88,30 @@ public class MemberVO {
 		this.addr = addr;
 	}
 
+	public String getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
+
+	public String getAnswer() {
+		return answer;
+	}
+
+	public void setAnswer(String answer) {
+		this.answer = answer;
+	}
+
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+
 	public Date getWdate() {
 		return wdate;
 	}
@@ -87,6 +119,8 @@ public class MemberVO {
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
 	}
+
+	
 	
 	
 	

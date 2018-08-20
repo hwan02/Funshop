@@ -8,7 +8,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Funshop_공지사항</title>
+<script type="text/javascript">
+	$(function() {
+		$("input").keyup(function() {
+			var search = $(this).val().toUpperCase();
+			$("#tbody tr").filter(function() { //모든 tr
+				var txt = $(this).text().toUpperCase();
+				$(this).toggle(txt.indexOf(search) > -1);
+			});
+		});
+	});//document.ready
+</script>
+</head>
 </head>
 <%--list.jsp --%>
 <body>
@@ -16,7 +29,12 @@
 		<br>
 		<h1>공지사항 : 목록</h1>
 		<hr class="container">
-		<a href="/Funshop/admin_notice/notice.do">공지사항 작성</a> <br> <br>
+		<a href="/Funshop/admin_main/main_view.do">홈</a>
+		<br>
+		<a href="/Funshop/admin_notice/notice.do">공지사항 작성</a>
+		<br><br>
+		<input type="search" placeholder="검색" >
+		<br><br>
 		<table cellpadding="5" class="table, container">
 			<thead>
 				<tr bgcolor="skyblue">
@@ -27,7 +45,7 @@
 					<th>수정 및 삭제</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="tbody">
 				<c:forEach items="${list }" var="notice">
 					<tr>
 						<td>${notice.no }</td>
@@ -42,10 +60,16 @@
 			</tbody>
 		</table>
 		<br><br>
+	<%-- 	<c:choose>
+      <c:when test="${param.page==totalPage}">다음</c:when>
+      <c:otherwise>
+        <a href="/Funshop/admin_notice/noticeList.do?action=list&page=${param.page+1 }">다음</a>
+      </c:otherwise>
+    </c:choose> --%>
 		<hr class="container">
-		<c:forEach begin="1" end="${totalPage }" var="i">
-       [<a href="/Funshop/admin_notice/noticeList.do?action=list&page=${i }">${i }</a>]
-    </c:forEach>
+<%-- 		<c:forEach begin="1" end="${totalPage }" var="i">
+       [<a href="	?action=list&page=${i }">${i }</a>]
+    </c:forEach> --%>
 
 
 
