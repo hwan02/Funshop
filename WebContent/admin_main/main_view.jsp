@@ -36,6 +36,14 @@
 				}
 			});
 		});
+		$("#adminPage").click(function() {
+			$.ajax({
+				url : "/Funshop/adminPage/regProductForm.do",
+				success : function(result) {
+					$("#view").html(result);
+				}
+			});
+		});
 	});
 
 		//익스플러에서는 잘됨, 크롬 안됨 : 보안상 안된다고 하지만 API 요청 해야지 됨
@@ -61,6 +69,7 @@
 			<li class="nav-item"><a class="nav-link" href="#" id="member">Member</a></li>
 			<li class="nav-item"><a class="nav-link" href="#" id="notice">Notice</a></li>
 			<li class="nav-item"><a class="nav-link" href="#" id="sales">Sales</a></li>
+			<li class="nav-item"><a class="nav-link" href="#" id="adminPage">Product</a></li>
 		</ul>
 
 		<!-- Tab panes -->
