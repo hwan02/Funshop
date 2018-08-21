@@ -8,8 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="icon" href="/Funshop/image/favicon.ico">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>Funshop_공지사항</title>
+<style type="text/css">
+   a:hover {color:red; text-decoration: none;}
+</style>
 <script type="text/javascript">
 	$(function() {
 		$("input").keyup(function() {
@@ -27,10 +31,8 @@
 <body>
 	<center>
 		<br>
-		<h1>공지사항 : 목록</h1>
+		<a href="/Funshop/admin_main/main_view.do"><h1>공지사항 : 목록</h1></a>
 		<hr class="container">
-		<a href="/Funshop/admin_main/main_view.do">홈</a>
-		<br>
 		<a href="/Funshop/admin_notice/notice.do">공지사항 작성</a>
 		<br><br>
 		<input type="search" placeholder="검색" >

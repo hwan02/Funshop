@@ -8,7 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link rel="stylesheet"   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="icon" href="/Funshop/image/favicon.ico">
 <title>Funshop_회원정보 관리</title>
+<style type="text/css">
+   a:hover {color:red; text-decoration: none;}
+</style>
 <script type="text/javascript">
 	$(function() {
 		$("input").keyup(function() {
@@ -25,10 +29,8 @@
 <body>
 	<center>
 		<br>
-		<h1>회원정보 관리 : 목록</h1>
+		<a href="/Funshop/admin_main/main_view.do"><h1>회원정보 관리 : 목록</h1></a>
 		<hr class="container">
-		<a href="/Funshop/admin_main/main_view.do">홈</a>
-		<br>
 		<input type="search" placeholder="검색" >
 		<br><br>
 		<table cellpadding="5" class="container" >

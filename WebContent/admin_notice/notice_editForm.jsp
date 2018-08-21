@@ -5,7 +5,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="icon" href="/Funshop/image/favicon.ico">
 <title>Funshop_공지사항</title>
+<style type="text/css">
+   a:link{color:buttonshadow;}
+   a:hover {color:red; text-decoration: none;}
+   a:active {color:yellow;}
+   a:visited {color: skyblue;}
+</style>
 <script type="text/javascript">
 function Delete() {
 	location.href="/Funshop/admin_notice/delete.do?no=${notice.no}";

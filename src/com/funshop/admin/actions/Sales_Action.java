@@ -26,10 +26,10 @@ public class Sales_Action extends Action{
 		Map<String, Object> map = new HashMap<>();
 		
 		ActionForward forward = null;
-		if(action == null || action.equals("list")) {
+		if(action == null) {
 			List<SalesVO> list = dao.selectAll(map);
 			request.setAttribute("list", list);
-			forward = mapping.findForward("list");
+			forward = mapping.findForward("null");
 		}
 		return forward;
 	}

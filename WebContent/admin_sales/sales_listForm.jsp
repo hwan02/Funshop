@@ -7,10 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="icon" href="/Funshop/image/favicon.ico">
 <title>Funshop_매출현황</title>
+<style type="text/css">
+   a:hover {color:red; text-decoration: none;}
+</style>
 </head>
 <%--sales_listForm.jsp--%>
 <body class="container">
+	<a href="/Funshop/admin_main/main_view.do"><h1 align="center">매출현황</h1></a>
+	<hr>
 	<table cellpadding="5" class="container">
 		<thead>
 			<tr bgcolor="skyblue">
