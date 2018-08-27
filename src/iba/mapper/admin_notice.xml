@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="notice">
+	<typeAlias alias="notice"
+		type="com.funshop.admin.vo.NoticeVO" />
+	<insert id="insert" parameterClass="notice">
+		insert into notice
+		(no,write,contents,wdate)
+		values
+		(notice_seq.nextval,#write#,#contents#,sysdate)
+	</insert>
+
+	<select id="selectAll" resultClass="notice"
+		parameterClass="java.util.Map">
+		select no,write,contents,wdate
+		from notice
+		order by no
+		desc
+	</select>
+
+	<select id="select" parameterClass="int" resultClass="notice">
+		select
+		no,write,contents,wdate
+		from notice
+		where no=#no#
+	</select>
+
+	<update id="update" parameterClass="notice">
+		update notice
+		set
+		write=#write#,contents=#contents#
+		where no=#no#
+	</update>
+
+	<delete id="delete" parameterClass="int">
+		delete from notice
+		where
+		no=#no#
+	</delete>
+
+
+
+
+	<!--전체페이지 수 조회 -->
+	<select id="selectRecordCount" parameterClass="int"
+		resultClass="int">
+		select ceil((select count(*) from notice)/#pageCount#)
+		from dual
+	</select>
+
+	<!-- 한페이지(한 화면)에서 보여질 만큼만 조회(예:조회된 레코드 위에서 10개) -->
+	<!-- 1페이지(첫페이지) 조회 -->
+	<select id="selectPage" resultClass="notice"
+		parameterClass="java.util.Map"><![CDATA[
+    
+	select no,write,contents,wdate
+	from (select no,write,contents,wdate,rownum rn
+	      from (select no,write,contents,wdate
+	            from notice
+	            order by no desc
+	           )
+	     )
+    where rn between #start# and #end#
+     
+  ]]></select>
+
+	<!-- 2페이지 조회 -->
+	<select id="selectPage2" resultClass="notice"><![CDATA[
+    
+	select no,writer,tel,contents,wdate
+	from (select no,write,contents,wdate,rownum rn
+	      from (select no,write,contents,wdate
+	            from notice
+	            order by no desc
+	           )
+	     )
+    where rn between 11 and 20
+     
+  ]]></select>
+
+	<!-- 3페이지 조회 -->
+	<select id="selectPage3" resultClass="notice"><![CDATA[
+    
+	select no,writer,tel,contents,wdate
+	from (select no,write,contents,wdate,rownum rn
+	      from (select no,write,contents,wdate
+	            from notice
+	            order by no desc
+	           )
+	     )
+    where rn between 21 and 30
+     
+  ]]></select>
+
+
+
+</sqlMap>

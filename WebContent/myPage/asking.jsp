@@ -180,6 +180,7 @@
 	$(function() {
 		$('#bt_set_target').click(function() {
 			member_id_to = $('#target_id').val();
+			setTimeout(reqListTo, 500);
 		});
 		if(${isAdmin }) { reqListTo(); }
 	});
@@ -209,6 +210,7 @@
 			}
 		});
 	}
+	
 	function setMemberID(targetID) {
 		$('#target_id').val(targetID);
 		member_id_to = targetID;
@@ -249,10 +251,10 @@
 <c:if test="${isAdmin }">
 	<hr>
 	<div style="margin:10px">
-		<h3>문의대기목록 <button onclick="reqListTo();">새로고침</button></h3> 
+		<h3>문의대기목록 <a href="javascript:reqListTo();" class="navbar-brand">새로고침</a></h3>
 		<table style="border: solid 1px; width: 100%">
 			<thead>
-				<tr bgcolor="#E1E6F6">
+				<tr bgcolor="#E1E6F6" align="center">
 					<th>번호</th>
 					<th>고객아이디</th>
 					<th>날짜</th>
@@ -268,7 +270,7 @@
 
 <div id="div_asking_shelter" style="display: none;">
 	<div id="div_asking_edit" style="text-align: center;">
-		<textarea rows="3" cols="25" id="ta_asking_update"></textarea><br>
+		<textarea rows="3" cols="20" id="ta_asking_update"></textarea><br>
 		<button id="bt_asking_update">수정</button>
 		<button id="bt_asking_delete">삭제</button>
 		<button id="bt_asking_cancel">취소</button>

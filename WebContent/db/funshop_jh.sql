@@ -5,7 +5,6 @@ create table buyHis (
 	buyHis_date date not null, --날짜
 	member_id varchar2(20) not null, --구매자아이디
 	pdetail_no number not null constraint buyHis_pdetail_no_fk references pdetail(pdetail_no), --옵션번호
-	product_no number not null constraint buyHis_product_no_fk references product(product_no), --상품번호
 	buyHis_num number not null, --주문수량
 	buyHis_payment number not null, --결제금액
 	buyHis_addr varchar2(300) not null,--배송지주소
@@ -23,10 +22,11 @@ nocycle
 nocache;
 
 --sample data
-insert into buyHis(buyHis_no,buyHis_date,member_id,pdetail_no,product_no,buyHis_num,buyHis_payment,buyHis_addr) values(buyHis_seq.nextval,sysdate,'gildong',1,3,1,2000,'서울시');
-insert into buyHis(buyHis_no,buyHis_date,member_id,pdetail_no,product_no,buyHis_num,buyHis_payment,buyHis_addr) values(buyHis_seq.nextval,sysdate,'gildong',2,3,2,3000,'서울시');
-insert into buyHis(buyHis_no,buyHis_date,member_id,pdetail_no,product_no,buyHis_num,buyHis_payment,buyHis_addr) values(buyHis_seq.nextval,sysdate,'gildong',3,4,3,1000,'서울시');
-insert into buyHis(buyHis_no,buyHis_date,member_id,pdetail_no,product_no,buyHis_num,buyHis_payment,buyHis_addr) values(buyHis_seq.nextval,sysdate,'gildong',4,4,4,1000,'서울시');
+insert into buyHis values(buyHis_seq.nextval,sysdate,'gildong',1,1,1000,'서울시','카드결제','일시불',0,'');
+insert into buyHis values(buyHis_seq.nextval,sysdate,'gildong',2,2,2000,'서울시','카드결제','일시불',0,'');
+insert into buyHis values(buyHis_seq.nextval,sysdate,'gildong',3,3,3000,'서울시','카드결제','일시불',0,'');
+insert into buyHis values(buyHis_seq.nextval,sysdate,'gildong',4,2,4000,'서울시','계좌이체','우리은행',0,'');
+insert into buyHis values(buyHis_seq.nextval,sysdate,'gildong',5,3,9000,'서울시','카드결제','2개월',0,'');
 
 -----------------------------------장바구니--------------------------------------------
 drop table basket;
@@ -106,26 +106,27 @@ increment by 1
 nocycle
 nocache;
 
------------------------------------상품옵션--------------------------------------------
-DROP TABLE PDETAIL CASCADE CONSTRAINT;
-CREATE TABLE PDETAIL (
-	PDETAIL_NO NUMBER PRIMARY KEY, --옵션번호
-	PDETAIL_NAME VARCHAR2(150) NOT NULL, --이름
-	PDETAIL_SUMMARY VARCHAR2(150) NOT NULL, --요약
-	PDETAIL_DESCRIPTION VARCHAR2(3000) NOT NULL, --설명
-	PDETAIL_PDIMG VARCHAR2(100), --이미지
-	PDETAIL_PRICE NUMBER NOT NULL, --가격
-	PDETAIL_NUM NUMBER NOT NULL, --수량
-	PRODUCT_NO NUMBER CONSTRAINT PDETAIL_PRODUCT_NO_FK REFERENCES PRODUCT(PRODUCT_NO) --상품번호
+-----------------------------------후기--------------------------------------------
+DROP TABLE REVIEW;
+CREATE TABLE REVIEW (
+	REVIEW_NO NUMBER PRIMARY KEY,  --리뷰번호
+	REVIEW_NAME VARCHAR2(150) NOT NULL, --제목
+	REVIEW_CONTENT VARCHAR2(3000) NOT NULL, --내용
+	REVIEW_IMG VARCHAR2(100) NOT NULL,  --이미지
+	REVIEW_DATE DATE NOT NULL,  --날짜
+	MEMBER_ID VARCHAR2(20) NOT NULL --작성자아이디
 );
 
-DROP SEQUENCE PDETAIL_SEQ;
-CREATE SEQUENCE PDETAIL_SEQ
+DROP SEQUENCE REVIEW_SEQ;
+CREATE SEQUENCE REVIEW_SEQ
 START WITH 1
 INCREMENT BY 1
-NOCYCLE
-NOCACHE;
+NOCACHE
+NOCYCLE;
 
 -----------------------------------조회--------------------------------------------
+select * from member;
 select * from product;
 select * from pdetail;
+select * from review;
+select * from buyHis;

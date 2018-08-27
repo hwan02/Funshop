@@ -1,0 +1,32 @@
+@charset "EUC-KR";
+
+   #display {
+                width:100%;
+                display:none;
+                position:absolute;
+                z-index:9999;           
+                float:right;
+                border-left:solid 1px #dedede;
+                border-right:solid 1px #dedede;
+                border-bottom:solid 1px #dedede;
+                overflow:hidden;
+            }
+    
+            .display_box {
+                padding:4px;
+                font-size:12px;
+                height:80px;
+                background:#FFFFFF;
+                color: #333333;
+            }
+            
+            .display_box:hover {
+                background:#fcffaa;
+                color: black;
+                cursor: pointer;
+            }
+            
+            .boximage { 
+                float:left;
+                margin-right:10px;
+            }

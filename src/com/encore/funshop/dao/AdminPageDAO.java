@@ -17,24 +17,11 @@ public class AdminPageDAO extends Action {
 		smc = MySqlMapClient.getSqlMapInstance();
 	}
 	
-	public boolean insertProduct(Product product) {
-		try {
-			smc.insert("adminPage.insertProduct", product);
-			return true;
-		} catch (Exception e) {
-			//e.printStackTrace();
-			return false;
-		}
+	public void insertProduct(Product product) throws SQLException {
+		smc.insert("adminPage.insertProduct", product);
 	}
 	
-	public boolean insertPdetail(Pdetail pdetail) {
-		try {
-			smc.insert("adminPage.insertPdetail", pdetail);
-			return true;
-		} catch (Exception e) {
-			//e.printStackTrace();
-			return false;
-		}
-	}
-	
+	public void insertPdetail(Pdetail pdetail) throws SQLException {
+		smc.insert("adminPage.insertPdetail", pdetail);
+	}	
 }

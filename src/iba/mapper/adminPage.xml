@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="adminPage">
+	<typeAlias alias="Product" type="com.encore.funshop.vo.Product"/>
+	<typeAlias alias="Pdetail" type="com.encore.funshop.vo.Pdetail"/>
+	
+	<insert id="insertProduct" parameterClass="Product">
+		insert into product
+		values(product_seq.nextval,#name#,#summary#,#description#,
+			   #mainImg#,#state#,#type#,#time#,#season#)
+	</insert>
+	
+	<insert id="insertPdetail" parameterClass="Pdetail">
+		insert into pdetail
+		values(pdetail_seq.nextval,#name#,#summary#,#description#,
+			   #pdImg#,#price#,#num#,(select max(product_no) from product))
+	</insert>
+	
+</sqlMap>

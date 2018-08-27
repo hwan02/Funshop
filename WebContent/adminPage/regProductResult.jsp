@@ -15,7 +15,7 @@
 		<c:if test="${!reg_product_success_flag }">
 			<h3><font color="red">상품등록에 실패하였습니다</font></h3>
 		</c:if>
-		<a href="">메인페이지로 이동</a>
+		<a href="/Funshop/mainPage/main.do">메인페이지로 이동</a>
 	</center>
 </body>
 </html>

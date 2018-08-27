@@ -19,12 +19,11 @@ public class RegProductAction extends Action{
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		boolean reg_product_success_flag = false;
-		AdminPageDAO dao = new AdminPageDAO();
+		boolean reg_product_success_flag = true;
 		
 		try {
-			String saveDirectory = request.getSession().getServletContext().getRealPath("/upload/image");
-			//==> "~/Funshop/upload/image"
+			String saveDirectory = request.getSession().getServletContext().getRealPath("/img");
+			//==> "~/Funshop/img"
 			int maxSize = 5 * 1024 * 1024; // 5mb;
 			MultipartRequest mreq = new MultipartRequest(request, saveDirectory, 
 														 maxSize, "UTF-8", new DefaultFileRenamePolicy());
@@ -37,7 +36,7 @@ public class RegProductAction extends Action{
 			String time = mreq.getParameter("proTime");
 			String season = mreq.getParameter("proSeas");
 			Product product = new Product(0, name, summary, description, mainImg, "판매중", type, time, season);
-			reg_product_success_flag = dao.insertProduct(product);
+			new AdminPageDAO().insertProduct(product);
 			
 			/* 옵션 등록 */
 			int pdCnt = Integer.parseInt(mreq.getParameter("pdCnt")); //옵션 개수(1개 이상)
@@ -49,11 +48,10 @@ public class RegProductAction extends Action{
 				int price = Integer.parseInt(mreq.getParameter("pdPrice"+i));
 				int num = Integer.parseInt(mreq.getParameter("pdNum"+i));
 				Pdetail pdetail = new Pdetail(0, name, summary, description, pdImg, price, num, 0);
-				reg_product_success_flag = dao.insertPdetail(pdetail);
+				new AdminPageDAO().insertPdetail(pdetail);
 			}
-		
 		} catch(Exception e) {
-			//e.printStackTrace();
+			e.printStackTrace();
 			reg_product_success_flag = false;
 		} finally {
 			request.getSession().setAttribute("reg_product_success_flag", reg_product_success_flag);

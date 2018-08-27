@@ -27,7 +27,7 @@
   			div_pd.find('textarea').attr({'required':'required'});
   			
   			div_pd_last.after(div_pd); //상품메인폼 또는 마지막 옵션 뒤에 붙히기
-  			div_pd.show(); //복사한div 보이기
+  			div_pd.slideDown(); //복사한div 보이기
   			div_pd_last = div_pd; //마지막 옵션을 복사한 div로 설정
   			$("[name=pdCnt]").val(pdCnt); //hidden데이터로 옵션개수 저장
   		});
@@ -75,7 +75,7 @@
 								<label>상품 분류</label><br>
 								<select style="width: 25%;" name="proCat">
 									<option>&lt;카테고리&gt;</option>
-									<option>옷</option>
+									<option>의류</option>
 									<option>음식</option>
 									<option>장소</option>
 								</select>
@@ -96,7 +96,7 @@
 						</tr>
 						<tr>
 							<td scope="row">
-								메인이미지 <input name="proImg" type="file"/>
+								메인이미지 <input name="proImg" type="file" required/>
 							</td>
 		           	   </tr>
 					</tbody>		
@@ -133,8 +133,8 @@
 					</tr>
 		           	<tr align="center">
 						<td>
-							<input type="number" class="form-control" placeholder="가격" name="pdPrice" maxlength="50" style="width: 200px">
-							<input type="number" class="form-control" placeholder="수량" name="pdNum" maxlength="50" style="width: 200px">
+							<input type="number" class="form-control" placeholder="가격" name="pdPrice" maxlength="50" style="width: 200px" min="10">
+							<input type="number" class="form-control" placeholder="수량" name="pdNum" maxlength="50" style="width: 200px" min="1">
 						</td>
 					</tr>
 					<tr>

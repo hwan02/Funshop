@@ -25,7 +25,14 @@
 				}
 			});
 		});
+		$('#thisMonth').click();
 	});
+	
+	function cancelOrder() {
+		if(confirm('정말 취소하시겠습니까?')) {
+			alert('주문 취소 신청이 완료되었습니다.');		
+		}
+	}
 </script>
 <center>
 	<table id="tb_buyHis" style="border-collapse: collapse; width: 90%;">
@@ -33,7 +40,7 @@
 		<tr style="border: 10px solid lightgray; background: lightgray;">
 			<td><font size="2px">기간별조회</font></td>
 			<td><button name="bt_time" value="thisWeek">이번주</button></td>
-			<td><button name="bt_time">이번달</button></td>
+			<td><button name="bt_time" id="thisMonth">이번달</button></td>
 			<td width="10"></td>
 			<td><button name="bt_time"></button></td><!-- 이번달-1 -->
 			<td><button name="bt_time"></button></td><!-- 이번달-2 -->

@@ -1,73 +1,73 @@
 package com.encore.funshop.vo;
 
 public class Pdetail { //惑前可记
-	private int pdetail_no;
-	private String pdetail_name;
-	private String pdetail_summary;
-	private String pdetail_description;
-	private String pdetail_pdImg;
-	private int pdetail_price;
-	private int pdetail_num;
+	private int no;
+	private String name;
+	private String summary;
+	private String description;
+	private String pdImg;
+	private int price;
+	private int num;
 	private int product_no;
 	
 	public Pdetail() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Pdetail(int pdetail_no, String pdetail_name, String pdetail_summary, String pdetail_description,
-			String pdetail_pdImg, int pdetail_price, int pdetail_num, int product_no) {
+	public Pdetail(int no, String name, String summary, String description, String pdImg, int price, int num,
+			int product_no) {
 		super();
-		this.pdetail_no = pdetail_no;
-		this.pdetail_name = pdetail_name;
-		this.pdetail_summary = pdetail_summary;
-		this.pdetail_description = pdetail_description;
-		this.pdetail_pdImg = pdetail_pdImg;
-		this.pdetail_price = pdetail_price;
-		this.pdetail_num = pdetail_num;
+		this.no = no;
+		this.name = name;
+		this.summary = summary;
+		this.description = description;
+		this.pdImg = pdImg;
+		this.price = price;
+		this.num = num;
 		this.product_no = product_no;
 	}
 	
-	public int getPdetail_no() {
-		return pdetail_no;
+	public int getNo() {
+		return no;
 	}
-	public void setPdetail_no(int pdetail_no) {
-		this.pdetail_no = pdetail_no;
+	public void setNo(int no) {
+		this.no = no;
 	}
-	public String getPdetail_name() {
-		return pdetail_name;
+	public String getName() {
+		return name;
 	}
-	public void setPdetail_name(String pdetail_name) {
-		this.pdetail_name = pdetail_name;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getPdetail_summary() {
-		return pdetail_summary;
+	public String getSummary() {
+		return summary;
 	}
-	public void setPdetail_summary(String pdetail_summary) {
-		this.pdetail_summary = pdetail_summary;
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
-	public String getPdetail_description() {
-		return pdetail_description;
+	public String getDescription() {
+		return description;
 	}
-	public void setPdetail_description(String pdetail_description) {
-		this.pdetail_description = pdetail_description;
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public String getPdetail_pdImg() {
-		return pdetail_pdImg;
+	public String getPdImg() {
+		return pdImg;
 	}
-	public void setPdetail_pdImg(String pdetail_pdImg) {
-		this.pdetail_pdImg = pdetail_pdImg;
+	public void setPdImg(String pdImg) {
+		this.pdImg = pdImg;
 	}
-	public int getPdetail_price() {
-		return pdetail_price;
+	public int getPrice() {
+		return price;
 	}
-	public void setPdetail_price(int pdetail_price) {
-		this.pdetail_price = pdetail_price;
+	public void setPrice(int price) {
+		this.price = price;
 	}
-	public int getPdetail_num() {
-		return pdetail_num;
+	public int getNum() {
+		return num;
 	}
-	public void setPdetail_num(int pdetail_num) {
-		this.pdetail_num = pdetail_num;
+	public void setNum(int num) {
+		this.num = num;
 	}
 	public int getProduct_no() {
 		return product_no;
@@ -78,9 +78,7 @@ public class Pdetail { //惑前可记
 	
 	@Override
 	public String toString() {
-		return "Pdetail [pdetail_no=" + pdetail_no + ", pdetail_name=" + pdetail_name + ", pdetail_summary="
-				+ pdetail_summary + ", pdetail_description=" + pdetail_description + ", pdetail_pdImg=" + pdetail_pdImg
-				+ ", pdetail_price=" + pdetail_price + ", pdetail_num=" + pdetail_num + ", product_no=" + product_no
-				+ "]";
+		return "Pdetail [no=" + no + ", name=" + name + ", summary=" + summary + ", description=" + description
+				+ ", pdImg=" + pdImg + ", price=" + price + ", num=" + num + ", product_no=" + product_no + "]";
 	}
 }

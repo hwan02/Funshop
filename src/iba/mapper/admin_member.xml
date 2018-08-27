@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="member">
+	<typeAlias alias="member"
+		type="com.funshop.admin.vo.MemberVO" />
+
+	<!--회원정보 필한 부분만 불어오기 -->
+	<select id="select" parameterClass="String" resultClass="member">
+		select
+		id,pw,name,email,phone,addr,question,answer,rank
+		from member
+		where
+		id=#id#
+	</select>
+
+
+	<!--회원정보 전체 불어오기 -->
+	<select id="selectAll" resultClass="member"
+		parameterClass="java.util.Map">
+		select
+		id,pw,name,email,phone,addr,question,answer,rank,wdate
+		from member
+		order by id desc
+	</select>
+
+	<!--회원정보 id,pw,name,email,phone,addr 수정 -->
+	<update id="update" parameterClass="member">
+		update member
+		set
+		pw=#pw#,addr=#addr#
+		where id=#id#
+	</update>
+
+	<delete id="delete" parameterClass="String">
+		delete from member
+		where
+		id=#id#
+	</delete>
+
+
+	<!--전체페이지 수 조회 -->
+	<select id="selectRecordCount" parameterClass="int"
+		resultClass="int">
+		select ceil((select count(*) from member)/#pageCount#)
+		from dual
+	</select>
+
+	<!-- 한페이지(한 화면)에서 보여질 만큼만 조회(예:조회된 레코드 위에서 10개) -->
+	<!-- 1페이지(첫페이지) 조회 -->
+	<select id="selectPage" resultClass="member"
+		parameterClass="java.util.Map"><![CDATA[
+    
+	select id,pw,name,email,phone,addr,question,answer,rank
+	from (select id,pw,name,email,phone,addr,question,answer,rank,rownum rn
+	      from (select id,pw,name,email,phone,addr,question,answer,rank
+	            from member
+	            order by id desc
+	           )
+	     )
+    where rn between #start# and #end#
+     
+  ]]></select>
+
+	<!-- 2페이지 조회 -->
+	<select id="selectPage2" resultClass="member"><![CDATA[
+    
+	select id,pw,name,email,phone,addr,question,answer,rank
+	from (select id,pw,name,email,phone,addr,question,answer,rank,rownum rn
+	      from (select id,pw,name,email,phone,addr,question,answer,rank
+	            from member
+	            order by id desc
+	           )
+	     )
+    where rn between 11 and 20
+     
+  ]]></select>
+
+	<!-- 3페이지 조회 -->
+	<select id="selectPage3" resultClass="member"><![CDATA[
+    
+	select id,pw,name,email,phone,addr,question,answer,rank
+	from (select id,pw,name,email,phone,addr,question,answer,rank,rownum rn
+	      from (select id,pw,name,email,phone,addr,question,answer,rank
+	            from member
+	            order by id desc
+	           )
+	     )
+    where rn between 21 and 30
+     
+  ]]></select>
+
+</sqlMap>

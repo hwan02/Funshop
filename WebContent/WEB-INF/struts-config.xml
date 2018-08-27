@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one or more
+    contributor license agreements.  See the NOTICE file distributed with
+    this work for additional information regarding copyright ownership.
+    The ASF licenses this file to You under the Apache License, Version 2.0
+    (the "License"); you may not use this file except in compliance with
+    the License.  You may obtain a copy of the License at
+   
+         http://www.apache.org/licenses/LICENSE-2.0
+   
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<!--
+     This is a blank Struts configuration file with an example
+     welcome action/page and other commented sample elements.
+
+     Struts Validator is configured using the factory defaults
+     and is ready-to-use.
+
+     NOTE: If you have a generator tool to create the corresponding Java classes
+     for you, you could include the details in the "form-bean" declarations.
+     Otherwise, you would only define the "form-bean" element itself, with the
+     corresponding "name" and "type" attributes, as shown here.
+-->
+
+
+<struts-config>
+
+
+<!-- ================================================ Form Bean Definitions -->
+
+    <form-beans>
+    <!-- sample form bean descriptor for an ActionForm
+        <form-bean
+            name="inputForm"
+            type="app.InputForm"/>
+    end sample -->
+
+    <!-- sample form bean descriptor for a DynaActionForm
+        <form-bean
+            name="logonForm"
+            type="org.apache.struts.action.DynaActionForm">
+            <form-property
+                name="username"
+                type="java.lang.String"/>
+            <form-property
+                name="password"
+                type="java.lang.String"/>
+       </form-bean>
+    end sample -->
+    </form-beans>
+
+
+<!-- ========================================= Global Exception Definitions -->
+
+    <global-exceptions>
+        <!-- sample exception handler
+        <exception
+            key="expired.password"
+            type="app.ExpiredPasswordException"
+            path="/changePassword.jsp"/>
+        end sample -->
+    </global-exceptions>
+
+
+<!-- =========================================== Global Forward Definitions -->
+
+    <global-forwards>
+        <!-- Default forward to "Welcome" action -->
+        <!-- Demonstrates using index.jsp to forward -->
+        <forward
+            name="welcome"
+            path="/Welcome.do"/>
+    </global-forwards>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+            <!-- Default "Welcome" action -->
+            <!-- Forwards to Welcome.jsp -->
+		
+		<!-- 마이페이지 타일즈  -->
+		<action path="/myPage/main"
+				forward=".myPageMain"/>
+		<action path="/myPage/basket"
+				forward=".basket"/>
+		<action path="/myPage/regBuy"
+				forward=".regBuy"/>
+		<action path="/myPage/point"
+				forward=".point"/>
+		<action path="/myPage/userInfo"
+				forward=".userInfo"/>
+		<action path="/myPage/asking"
+				forward=".asking"/>		
+		
+		<!-- 구매내역 -->
+		<action path="/myPage/buyHistory"
+				forward="/myPage/buyHistory.jsp"/>
+		<action path="/myPage/buyHistoryResult"
+				type="com.encore.funshop.actions.BuyHistoryAction">
+			<forward name="result" path="/myPage/buyHistoryResult.jsp"/>
+		</action>
+		
+		<!-- 장바구니 -->
+		<action path="/myPage/basketResult"
+				type="com.encore.funshop.actions.BasketAction">
+			<forward name="result" path="/myPage/basket.jsp"/>
+		</action>
+		
+		<!-- 정기구매 -->
+		<action path="/myPage/regBuyResult"
+				type="com.encore.funshop.actions.RegBuyAction">
+			<forward name="result" path="/myPage/regBuy.jsp"/>
+		</action>
+		
+		<!-- 포인트관리 -->
+		<action path="/myPage/pointResult"
+				type="com.encore.funshop.actions.PointAction">
+			<forward name="result" path="/myPage/point.jsp"/>
+		</action>
+		
+		<!-- 개인정보변경 -->
+		<action path="/myPage/userInfoResult"
+				type="com.encore.funshop.actions.MyInfoAction">
+			<forward name="result" path="/myPage/myInfo.jsp"/>
+			<forward name="afterUpdate" path="/myPage/userInfo.do" redirect="true"/>
+			<forward name="afterDelete" path="/mainPage/main.do" redirect="true"/>
+		</action>
+		
+		<!-- 실시간문의 -->
+		<action path="/myPage/askingView"
+				forward="/myPage/asking.jsp"/>
+		<action path="/myPage/askingAction"
+				type="com.encore.funshop.actions.AskingAction">
+			<forward name="list" path="/myPage/askingResult.jsp"/>
+		</action>
+		
+		<!-- 상품등록 -->
+		<action path="/adminPage/regProductForm"
+				forward="/adminPage/regProductForm.jsp"/>
+		<action path="/adminPage/regProductAction"
+				type="com.encore.funshop.actions.RegProductAction">
+			<forward name="result" path="/adminPage/regProductResult.jsp" redirect="true"/>
+		</action>
+		
+		<!-- 오델로 -->
+        <action path="/gamePage/othello"
+        		type="com.encore.funshop.actions.OthelloAction">
+        	<forward name="board" path="/gamePage/result/othelloBoard.jsp"/>
+        </action>
+		
+		<!-- 회원가입 -->
+        <action path="/userinput"
+        		type="com.encore.funshop.actions.UserInfoAction">
+        		<forward name="input" path="/user/userinput.jsp"/>
+        		<forward name="success" path="/user/userprocess.jsp"/>
+        		<forward name="fail" path="/user/fail.jsp"/>
+        		<forward name="idCheck" path="/user/idCheck.jsp"/>
+        		<forward name="idResult" path="/user/idResult.jsp"/>      		
+        </action>
+        
+        <!-- 로그인 -->
+        <action path="/login"
+        		type="com.encore.funshop.actions.LoginAction">
+        		<forward name="loginForm" path="/user/login.jsp"/>
+        		<forward name="logout" path="/user/logout.jsp"/>
+        		<forward name="login" path="/user/index.jsp"/>
+        		<forward name="selectForm" path="/user/selectIdPw.jsp"/>
+        		<forward name="selectIdPw" path="/user/resultIdPW.jsp"/>
+        		<forward name="loginSuccess" path="/mainPage/main.do" redirect="true"/>
+        </action>
+ 
+        <!-- 타일즈 액션 정의(tiles-defs.xml안의 definition태그 수 만큼) -->
+		<action path="/mainPage/main" forward=".main" />
+		<action path="/mainPage/review" forward=".review" />
+		<action path="/mainPage/review_write" forward=".review_write" />
+		<action path="/mainPage/review_read" forward=".review_read" />
+		<action path="/mainPage/mainDetail" forward=".mainDetail" />
+		<action path="/mainPage/buyhis" forward=".buyhis" />
+		<action path="/mainPage/event" forward=".event" />
+		
+		<!-- 메인폼 액션 정의 -->
+		<action path="/mainPage"
+			type="com.encore.funshop.actions.MainAction">
+			<forward name="main" path="/mainPage/base.jsp"></forward>
+			<forward name="search" path="/mainPage/mainSearch.jsp"></forward>
+			<forward name="image" path="/mainPage/resultjsp/getImage.jsp"></forward>
+			<forward name="detail" path="/mainPage/mainDetail.do"></forward>
+			<forward name="type" path="/mainPage/resultjsp/type.jsp"></forward>
+			<forward name="typeList" path="/mainPage/resultjsp/typeList.jsp"></forward>
+			<forward name="directBuy" path="/mainPage/buyhis.do"></forward>
+		</action>
+		
+		<!-- 리뷰 -->
+		<action path="/mainPage/reviewAction"
+				type="com.encore.funshop.actions.ReviewAction">
+			<forward name="showList" path="/mainPage/review.jsp"></forward>		
+			<forward name="reqList" path="/mainPage/review.do" redirect="true"></forward>
+			<forward name="showReview" path="/mainPage/review_read.jsp"></forward>
+		</action>
+		
+		<action path="/admin_main/main_view" forward="/admin_main/main_view.jsp"> </action>
+
+		<!--공지사항 작성 -->
+		<action path="/admin_notice/notice" forward="/admin_notice/notice_inputForm.jsp"> </action>
+		<!--공지사항 목록 -->
+		<action type="com.funshop.admin.actions.Notice_Action" path="/admin_notice/noticeList">
+			<forward name="list" path="/admin_notice/notice_listForm.jsp"/>
+			<forward name="insert" path="/admin_notice/noticeList.do?action=list" redirect="true"/>
+		</action>
+		<!--공지사항 수정폼 보이기 -->
+		<action type="com.funshop.admin.actions.Notice_UpdateFormAction" path="/admin_notice/noticeEdit">
+			<forward name="editForm" path="/admin_notice/notice_editForm.jsp"/>
+		</action>
+		<!--공지사항 수정폼 처리 -->
+		<action type="com.funshop.admin.actions.Notice_UpdateAction" path="/admin_notice/update">
+			<forward name="noticeList" path="/admin_notice/noticeList.do?action=list" redirect="true"/>
+		</action>
+		<!--공지사항 글 삭제 처리 -->
+		<action type="com.funshop.admin.actions.Notice_DeleteAction" path="/admin_notice/delete">
+			<forward name="check" path="/admin_notice/noticeList.do?action=list" redirect="true"/>
+		</action>
+		<!--회원정보 관리 목록 -->
+		<action type="com.funshop.admin.actions.Member_Action" path="/admin_member/memberList">
+			<forward name="list" path="/admin_member/member_listForm.jsp"/>
+			<forward name="admin_list" path="/admin_member/memberList.do?action=list" redirect="true"/>
+		</action>
+		<!--회원정보 관리 수정폼 보이기 -->
+		<action type="com.funshop.admin.actions.Member_UpdateFormAction" path="/admin_member/memberEdit">
+			<forward name="editForm" path="/admin_member/member_editForm.jsp"/>
+		</action>
+		<!--회원관리 수정폼 처리 -->
+		<action type="com.funshop.admin.actions.Member_UpdateAction" path="/admin_member/update">
+			<forward name="memberList" path="/admin_member/memberList.do?action=list" redirect="true"/>
+		</action>
+		<!--회원관리 글 삭제 처리 -->
+		<action type="com.funshop.admin.actions.Member_DeleteAction" path="/admin_member/delete">
+			<forward name="check" path="/admin_member/memberList.do?action=list" redirect="true"/>
+		</action>
+		<!--매출 (구매금액-할인금액) -->
+		<!-- <action path="/admin_sales/sales" forward="/admin_sales/sales_listForm.jsp"> </action> -->
+		<action type="com.funshop.admin.actions.Sales_Action" path="/admin_sales/sales">
+			<forward name="null" path="/admin_sales/sales_listForm.jsp"/>
+		</action>
+		<!--공지사항(사용자) 목록 -->
+		<action type="com.funshop.admin.actions.Notice_Action" path="/userNotice/userNotice">
+			<forward name="list" path="/userNotice/notice.jsp"/>
+		<!-- <forward name="insert" path="/userNotice/userNotice.do?action=list" redirect="true"></forward> -->
+		</action>
+				
+    <!-- sample input and input submit actions
+
+        <action
+            path="/Input"
+            type="org.apache.struts.actions.ForwardAction"
+            parameter="/pages/Input.jsp"/>
+
+        <action
+            path="/InputSubmit"
+            type="app.InputAction"
+            name="inputForm"
+            scope="request"
+            validate="true"
+            input="/pages/Input.jsp"/>
+
+            <action
+                path="/edit*"
+                type="app.Edit{1}Action"
+                name="inputForm"
+                scope="request"
+                validate="true"
+                input="/pages/Edit{1}.jsp"/>
+
+    end samples -->
+    </action-mappings>
+
+
+<!-- ======================================== Controller Definitions -->
+
+	<controller processorClass="com.encore.control.MyRequestProcessor"/>
+	<!-- <controller processorClass="org.apache.struts.tiles.TilesRequestProcessor"/> -->
+	
+<!-- ======================================== Message Resources Definitions -->
+
+    <!-- <message-resources parameter="MessageResources" /> -->
+
+<!-- =============================================== Plug Ins Configuration -->
+
+  <!-- ======================================================= Tiles plugin -->
+  <!--
+     This plugin initialize Tiles definition factory. This later can takes some
+	 parameters explained here after. The plugin first read parameters from
+	 web.xml, thenoverload them with parameters defined here. All parameters
+	 are optional.
+     The plugin should be declared in each struts-config file.
+       - definitions-config: (optional)
+            Specify configuration file names. There can be several comma
+		    separated file names (default: ?? )
+       - moduleAware: (optional - struts1.1)
+            Specify if the Tiles definition factory is module aware. If true
+            (default), there will be one factory for each Struts module.
+			If false, there will be one common factory for all module. In this
+            later case, it is still needed to declare one plugin per module.
+            The factory will be initialized with parameters found in the first
+            initialized plugin (generally the one associated with the default
+            module).
+			  true : One factory per module. (default)
+			  false : one single shared factory for all modules
+	   - definitions-parser-validate: (optional)
+	        Specify if xml parser should validate the Tiles configuration file.
+			  true : validate. DTD should be specified in file header (default)
+			  false : no validation
+
+	  Paths found in Tiles definitions are relative to the main context.
+
+      To use this plugin, download and add the Tiles jar to your WEB-INF/lib
+      directory then uncomment the plugin definition below.
+
+    <plug-in className="org.apache.struts.tiles.TilesPlugin" >
+
+      <set-property property="definitions-config"
+                       value="/WEB-INF/tiles-defs.xml" />
+      <set-property property="moduleAware" value="true" />
+    </plug-in>
+  -->  
+
+
+  <!-- =================================================== Validator plugin -->
+
+  <plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+    <set-property
+        property="pathnames"
+        value="/org/apache/struts/validator/validator-rules.xml,
+               /WEB-INF/validation.xml"/>
+  </plug-in>
+  
+  <plug-in className="org.apache.struts.tiles.TilesPlugin">
+  	<set-property property="definitions-config" value="/WEB-INF/config/tiles-defs.xml"/>
+  	<set-property property="definitions-debug" value="2"/>
+  	<set-property property="definitions-parser-details" value="2"/>
+  	<set-property property="definitions-parser-validate" value="true"/>
+  </plug-in>
+
+</struts-config>
+

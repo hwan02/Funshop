@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="myPage">
+	<typeAlias alias="BuyHis" type="com.encore.funshop.vo.BuyHis"/>
+	<typeAlias alias="Basket" type="com.encore.funshop.vo.Basket"/>
+	<typeAlias alias="Product" type="com.encore.funshop.vo.Product"/>
+	<typeAlias alias="RegBuy" type="com.encore.funshop.vo.RegBuy"/>
+	<typeAlias alias="Asking" type="com.encore.funshop.vo.Asking"/>
+	<typeAlias alias="UserInfo" type="com.encore.funshop.vo.UserInfo"/>
+
+	<select id="selectBuyHistory" parameterClass="Map" resultClass="BuyHis">
+		select buyHis_no,buyHis_date,member_id, pdetail_no,p.product_no,buyHis_num,
+	   		   buyHis_addr,buyHis_payment,buyHis_payType,buyHis_payInfo,buyHis_discount,buyHis_cond,
+	  		   pdetail_name, product_name, product_mainimg
+		from buyHis b inner join (select * from pdetail natural join product) p
+		using (pdetail_no)
+		where member_id=#member_id# and buyHis_date between #startDate# and #endDate#
+		order by buyHis_no asc
+	</select>
+	
+	<select id="selectBasket" parameterClass="String" resultClass="Basket">
+		select *
+		from basket
+		where member_id=#member_id#
+	</select>
+	
+	<insert id="insertBasket" parameterClass="Basket">
+		insert into basket(basket_no, member_id, product_no) values(basket_seq.nextval, #member_id#, #product_no#)
+	</insert>
+	
+	<delete id="deleteBasket" parameterClass="int">
+		delete from basket
+		where basket_no=#basket_no#
+	</delete>
+	
+	<select id="selectProduct" parameterClass="int" resultClass="Product">
+		select product_no no, product_name name, product_summary summary,
+			   product_description description, product_mainImg mainImg, product_state state,
+			   product_type type, product_time time, product_season season
+		from product
+		where product_no=#product_no#
+	</select>
+	
+	<select id="selectRegBuy" parameterClass="String" resultClass="RegBuy">
+		select *
+		from regBuy
+		where member_id=#member_id#
+		order by regBuy_date desc
+	</select>
+	
+	<select id="selectTotalPoint" parameterClass="Map" resultClass="Integer">
+		select sum(point_point)
+		from point
+		where member_id=#member_id# and point_date between #startDate# and #endDate#
+	</select>
+	
+	<insert id="insertPoint" parameterClass="Map">
+		insert into point
+		values(point_seq.nextval, sysdate, #member_id#, #point_point#)
+	</insert>
+	
+	<select id="selectMyInfo" parameterClass="String" resultClass="UserInfo">
+		select *
+		from member
+		where id=#member_id#
+	</select>
+	
+	<update id="updateMyInfo" parameterClass="UserInfo">
+		update member
+		set pw=#pw#, phone=#phone#, email=#email#, question=#question#, answer=#answer#, addr=#addr#
+		where id=#id#
+	</update>
+	
+	<delete id="deleteMyInfo" parameterClass="String">
+		delete from member
+		where id=#member_id#
+	</delete>
+	
+	<insert id="insertAsking" parameterClass="Map">
+		insert into asking(asking_no, asking_date, member_id_from, member_id_to, asking_content)
+		values(asking_seq.nextval, sysdate, #member_id_from#, #member_id_to#, #asking_content#)
+	</insert>
+	
+	<select id="selectAsking" parameterClass="Map" resultClass="Asking">
+		select *
+		from asking
+		where (member_id_from=#member_id_from# and member_id_to=#member_id_to#) or
+			  (member_id_from=#member_id_to# and member_id_to=#member_id_from#)
+		order by asking_no asc
+	</select>
+	
+	<delete id="deleteAsking" parameterClass="int">
+		delete from asking
+		where asking_no=#asking_no#
+	</delete>
+	
+	<update id="updateAsking" parameterClass="map">
+		update asking
+		set asking_content=#asking_content#, asking_check=#asking_check#
+		where asking_no=#asking_no#
+	</update>
+	
+	<update id="checkAsking" parameterClass="Map">
+		update asking
+		set asking_check=#asking_check#
+		where member_id_from=#member_id_to# and member_id_to=#member_id_from#
+	</update>
+	
+	<select id="selectAskingTo" parameterClass="Map" resultClass="Asking">
+		select *
+		from asking
+		where asking_no in (select max(asking_no) 
+							from asking
+							where member_id_to=#member_id_to# and asking_check=#asking_check#
+							group by member_id_from)
+	</select>
+</sqlMap>

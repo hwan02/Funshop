@@ -9,6 +9,7 @@ import com.encore.funshop.vo.Asking;
 import com.encore.funshop.vo.Basket;
 import com.encore.funshop.vo.BuyHis;
 import com.encore.funshop.vo.Product;
+import com.encore.funshop.vo.UserInfo;
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 import iba.MySqlMapClient;
@@ -41,7 +42,15 @@ public class MyPageDAO {
 			return null;
 		}
 	}
-	
+	public boolean insertBasket(Basket bas) {
+		try {
+			smc.insert("myPage.insertBasket", bas);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	public boolean deleteBasket(int basket_no) {
 		try {
 			if(smc.delete("myPage.deleteBasket", basket_no) > 0 ) return true;
@@ -67,6 +76,35 @@ public class MyPageDAO {
 		} catch (Exception e) {
 			//e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public UserInfo selectMyInfo(String member_id) {
+		try {
+			return (UserInfo) smc.queryForObject("myPage.selectMyInfo", member_id);
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public boolean updateMyInfo(UserInfo userInfo) {
+		try {
+			if(smc.update("myPage.updateMyInfo", userInfo) > 0) return true;
+			else return false;
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean deleteMyInfo(String member_id) {
+		try {
+			if(smc.delete("myPage.deleteMyInfo", member_id) > 0) return true;
+			else return false;
+		} catch (SQLException e) {
+			//e.printStackTrace();
+			return false;
 		}
 	}
 	

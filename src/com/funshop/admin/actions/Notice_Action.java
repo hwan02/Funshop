@@ -37,7 +37,7 @@ public class Notice_Action extends Action{
 			
 			
 			
-			// 총페이지 갯수 구하기
+		/*	// 총페이지 갯수 구하기
 			// int totalRecordCount//(전체 레코드수) : 32
 			int pageCount = 10;// (한 화면에 보여질 레코드수) : 10
 			int totalPage = dao.selectRecordCount(pageCount);
@@ -48,7 +48,7 @@ public class Notice_Action extends Action{
 
 			if (page == null) {// page정보가 없다면
 				response.sendRedirect("/Funshop/admin_notice/noticeList.do?action=list&page=1");
-				// 1페이지 정보를 가지고 Controller를 재호출!!
+				// 1페이지 정보를 가지고 Action를 재호출!!
 				return forward;
 			}
 
@@ -66,7 +66,7 @@ public class Notice_Action extends Action{
 			
 			// 전체 게시물 정보 조회
 			request.setAttribute("list", dao.selectPage(map2));
-			request.setAttribute("totalPage", totalPage);
+			request.setAttribute("totalPage", totalPage);*/
 			
 			
 			forward = mapping.findForward("list");

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="mainPage">
+	<typeAlias alias="Review" type="com.encore.funshop.vo.Review"/>
+	<typeAlias alias="Product" type="com.encore.funshop.vo.Product"/>
+
+	<select id="selectReviewList" resultClass="Review">
+		select *
+		from review
+		order by review_date desc
+	</select>
+	
+	<select id="selectReview" parameterClass="int" resultClass="Review">
+		select *
+		from review
+		where review_no=#review_no#
+	</select>
+	
+	<insert id="insertReview" parameterClass="Review">
+		insert into review
+		values(review_seq.nextval, #review_name#, #review_content#, #review_img#, sysdate, #member_id#)
+	</insert>
+	
+	<delete id="deleteReview" parameterClass="int">
+		delete from review
+		where review_no=#review_no#
+	</delete>
+	
+	<select id="searchProduct" parameterClass="String" resultClass="Product">
+		select product_no no, product_name name
+		from product
+		where upper(product_name) like upper(#keyword#)
+	</select>
+</sqlMap>

@@ -34,7 +34,14 @@ public class BasketAction extends Action{
 			request.setAttribute("map", map);
 	
 			return mapping.findForward("result");
-		} else if(action.equals("delete")) {
+		} else if(action.equals("insert")){
+			Basket bas = new Basket();
+			bas.setMember_id(request.getParameter("member_id"));
+			bas.setProduct_no(Integer.parseInt(request.getParameter("product_no")));
+			System.out.println("bas="+bas);
+			dao.insertBasket(bas);
+			return mapping.findForward("insert");
+		}else  if(action.equals("delete")) {
 			int basket_no = Integer.parseInt(request.getParameter("basket_no"));
 			request.getSession().setAttribute("result", dao.deleteBasket(basket_no)); //장바구니 삭제 실패해도 특별히 다른 동작 하지 않음
 			return null;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="user">
+	<!-- 회원가입 -->
+	<insert id="insert" parameterClass="com.encore.funshop.vo.UserInfo">
+		<!-- insert into member (id,pw,name,phone,email,wdate) values (#id#,#pw#,#name#,#phone#,#email#,sysdate) -->
+		insert into member (id,pw,name,phone,email,wdate,question,answer) values (#id#,#pw#,#name#,#phone#,#email#,sysdate,#question#,#answer#)
+	</insert>
+	
+	<!-- id중복확인 -->
+	<select id="idCheck" resultClass="Integer" parameterClass="String">
+		select count(*) from member where id=#id#
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="selectLogin" resultClass="String" parameterClass="java.util.Map">
+		select id from member where id=#id# and pw=#pw#
+	</select>
+	
+	<!-- id찾기 -->
+	<select id="selectId" resultClass="String" parameterClass="java.util.Map">
+		select id from member where name=#name# and phone=#phone#
+	</select>
+	
+	<!-- pw찾기 -->
+	<select id="selectPw" resultClass="String" parameterClass="java.util.Map">
+		<!-- select pw from member where name=#name# and id=#id# -->
+		select pw from member where name=#name# and id=#id# and question=#question# and answer=#answer#
+	</select>
+	
+</sqlMap>

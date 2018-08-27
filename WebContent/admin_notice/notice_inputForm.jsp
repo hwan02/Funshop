@@ -5,10 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="icon" href="/Funshop/image/favicon.ico">
 <title>Funshop_공지사항</title>
 <style type="text/css">
   .parent { text-align: center; }
 /*   .child { display: inline-block; } */
+   a:hover {color:red; text-decoration: none;}
+</style>
 </style>
 </head>
 <%--notice_inputForm.jsp--%>

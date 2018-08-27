@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+"http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+	<definition name=".myPageMain" page="/myPage/main.jsp">		
+		<put name="myPageHeader" value="/mainPage/header.jsp"/>
+		<put name="myPageMenu" value="/myPage/menu.jsp"/>
+		<put name="myPageBody" value="/myPage/buyHistory.do"/>
+	</definition>
+	
+	<definition name=".basket" extends=".myPageMain">
+		<put name="myPageBody" value="/myPage/basketResult.do"/>
+	</definition>
+	
+	<definition name=".regBuy" extends=".myPageMain">
+		<put name="myPageBody" value="/myPage/regBuyResult.do"/>
+	</definition>
+	
+	<definition name=".point" extends=".myPageMain">
+		<put name="myPageBody" value="/myPage/pointResult.do"/>
+	</definition>
+	
+	<definition name=".userInfo" extends=".myPageMain">
+		<put name="myPageBody" value="/myPage/userInfoResult.do"/>
+	</definition>
+	
+	<definition name=".asking" extends=".myPageMain">
+		<put name="myPageBody" value="/myPage/askingView.do"/>
+	</definition>
+
+	<!-- 메인페이지 tiles -->
+	<definition name=".main"  path="/mainPage/base.jsp" >
+		<put name="header" value="/mainPage/header.jsp"></put>
+		<put name="body" value="/mainPage/body.jsp"></put>
+		<put name="footer" value="/mainPage/footer.jsp"></put>
+	</definition>
+	<definition name=".review" extends=".main">
+		<put name="body" value="/mainPage/reviewAction.do"></put>
+	</definition>
+	<definition name=".review_write" extends=".main" >
+		<put name="body" value="/mainPage/review_write.jsp"></put>
+	</definition>
+	<definition name=".review_read" extends=".main" >
+		<put name="body" value="/mainPage/reviewAction.do?action=read"></put>
+	</definition>
+	<definition name=".mainDetail" extends=".main" >
+		<put name="body" value="/mainPage/mainDetail.jsp"></put>
+	</definition>
+	<definition name=".buyhis" extends=".main" >
+		<put name="body" value="/mainPage/buyhis.jsp"></put>
+	</definition>
+	<definition name=".event" extends=".main" >
+		<put name="body" value="/gamePage/othello.jsp"></put>
+	</definition>
+</tiles-definitions>

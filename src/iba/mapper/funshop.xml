@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC " -//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd" >
+<sqlMap namespace="funshop">
+	<typeAlias alias="product" type="com.encore.funshop.vo.Product"/>
+	<typeAlias alias="pdetail" type="com.encore.funshop.vo.Pdetail"/>
+	<typeAlias alias="buyhis" type="com.encore.funshop.vo.BuyHis"/>
+	<select id="selectProductAll" resultClass="product" parameterClass="java.util.Map">
+		select product_no no, product_name name, product_summary summary, 
+		product_description description, product_mainimg mainImg,
+		product_state state, product_type type, product_time time, product_season season
+		 from product
+		 <isNotEmpty property="cloth">
+		 where product_type=#cloth#
+		 </isNotEmpty>
+		 <isNotEmpty property="place">
+		 where product_type=#place#
+		 </isNotEmpty>
+		 <isNotEmpty property="food">
+		 where product_type=#food#
+		 </isNotEmpty>
+	</select>
+	<select id="selectDetail" parameterClass="int" resultClass="product">
+		select product_no no, product_name name, product_summary summary, 
+		product_description description, product_mainimg mainImg,
+		product_state state, product_type type, product_time time, product_season season
+		 from product 
+		 where product_no = #no#
+	</select>
+	<select id="selectType"  resultClass="String">
+		select distinct product_type type
+		 from product 
+	</select>
+	<select id="selectLow" parameterClass="int" resultClass="int">
+		select min(pdetail_price) from pdetail 
+		where product_no=#no#
+		<!-- select pdetail_name from pdetail where product_no=#no# and pdetail_price=(select min(pdetail_price) from pdetail) -->
+	</select>
+	<select id="selectPdetail" parameterClass="int" resultClass="pdetail">
+		SELECT PDETAIL_NO NO, PDETAIL_DESCRIPTION DESCRIPTION, PDETAIL_NAME NAME, PDETAIL_PRICE PRICE,
+		 PDETAIL_NUM NUM, PDETAIL_SUMMARY SUMMARY, PDETAIL_PDIMG PDIMG, PRODUCT_NO
+		FROM PDETAIL NATURAL JOIN PRODUCT 
+		WHERE PRODUCT_NO = #NO#
+	</select>
+	<insert id="insertBuy" parameterClass="buyhis">
+		insert into buyHis(buyHis_no,buyHis_date,member_id,pdetail_no,
+		buyHis_num,buyHis_payment,buyHis_addr,buyHis_payType,buyHis_payInfo)
+		values(buyHis_seq.nextval,sysdate,#member_id#,#pdetail_no#,#buyHis_num#,#buyHis_payment#,
+		#buyHis_addr#,#buyHis_payType#,#buyHis_payInfo#)
+	</insert>
+</sqlMap>

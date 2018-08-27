@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd" >
+<sqlMapConfig>
+<!-- sqlMapConfig.xml
+		==> iBatis프레임워크(SQL Mapper프레임워크)에 대한 환경설정
+ -->
+  <properties resource="./iba/conn.properties"/>
+  <settings cacheModelsEnabled="true"
+  			enhancementEnabled="true"
+  			lazyLoadingEnabled="true"
+  			maxRequests="30"
+  			maxSessions="25"
+  			maxTransactions="10"
+  			useStatementNamespaces="true"
+  />
+  <!-- <typeAlias alias="Emp" type="com.encore.t0713.Emp"/> -->
+  <transactionManager type="JDBC">
+  	<dataSource type="SIMPLE">
+  		<property name="JDBC.Driver" value="${driver}"/>
+  		<property name="JDBC.ConnectionURL" value="${url}"/>
+  		<property name="JDBC.Username" value="${user}"/>
+  		<property name="JDBC.Password" value="${password}"/>
+  	</dataSource>
+  </transactionManager>
+  
+  <!-- ★ SQL문들이 저장되어 있는 XML을 등록 ★ -->
+  <sqlMap resource="./iba/mapper/myPage.xml"/>
+  <sqlMap resource="./iba/mapper/adminPage.xml"/>
+  <sqlMap resource="./iba/mapper/user.xml"/>
+  <sqlMap resource="./iba/mapper/funshop.xml"/>
+  <sqlMap resource="./iba/mapper/mainPage.xml"/>
+  <sqlMap resource="./iba/mapper/admin_member.xml"/>
+  <sqlMap resource="./iba/mapper/admin_notice.xml"/>
+  <sqlMap resource="./iba/mapper/admin_sales.xml"/>
+</sqlMapConfig>

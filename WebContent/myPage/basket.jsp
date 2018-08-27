@@ -28,12 +28,12 @@
 				<c:if test="${list == null || list.size() < 1 }">
 					<center>
 						<br>장바구니에 담긴 물품이 없습니다<br>
-						<a href="shopping.do">할인중인 상품보기☞</a><br><br>
+						<a href="/Funshop/mainPage/main.do">할인중인 상품보기☞</a><br><br>
 					</center>
 				</c:if>
 				<c:if test="${list.size() > 0 }">
 					<table border="1" style="width: 100%;">
-						<tr bgcolor="#E1E6F6">
+						<tr bgcolor="#E1E6F6" align="center">
 							<th width="60">번호</th>
 							<th colspan="2">상품정보</th>
 							<th width="180">신청</th>
@@ -41,12 +41,12 @@
 					<c:forEach var="basket" items="${list }" varStatus="status">
 						<tr align="center" id="tr_${basket.basket_no }">
 							<td>${status.count }</td>
-							<td style="border-right-style: hidden;"><img src="/Funshop/upload/image/${map.get(basket.product_no).getProduct_mainImg() }" style="width: 100px; height: 100px"></td>
+							<td style="border-right-style: hidden;"><img src="/Funshop/img/${map.get(basket.product_no).getMainImg() }" style="width: 100px; height: 100px"></td>
 							<td>
-								<b><font size="4px">${map.get(basket.product_no).getProduct_name() }</font></b><br>
-								${map.get(basket.product_no).getProduct_summary() }<br>
+								<b><font size="4px">${map.get(basket.product_no).getName() }</font></b><br>
+								${map.get(basket.product_no).getSummary() }<br>
 							</td>
-							<td><button>바로구매</button> <button name="bt_basket_delete">삭제</button></td>
+							<td><button onclick="location.href='/Funshop/mainPage.do?action=mainDetail${basket.product_no }';">바로구매</button> <button name="bt_basket_delete">삭제</button></td>
 						</tr>
 					</c:forEach>
 					</table>

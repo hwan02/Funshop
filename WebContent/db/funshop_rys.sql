@@ -21,20 +21,5 @@ create sequence notice_seq
 ------------------------공지사항 테이블 전체 조회
 select * from notice;
 
-
-------------------------회원가입 테이블 전체 조회(관리자 회원관리) : 작성자 이예린
-------------------------번호, 날짜 추가 : 작성자 류영석
-select * from member;					--회원가입 테이블 전체 조회
-
-drop table member;
-
-create table member(
-	no number,							--번호(삭제 편리) : 추가
-	id varchar2(30),					--회원 아이디
-	pw varchar2(30),					--회원 비번
-	name varchar2(30),					--회원 이름
-	email varchar2(50), 				--회원 이메일
-	phone varchar2(15),					--회원 폰 번호
-	addr varchar2(80),					--회원 주소
-	wdate date -- default sysdate		--언제 가입 했는지 확인 : 추가
-);
+------------------------매출(결제금액 - 할인금액)
+select buyHis_payment,buyHis_discount from buyHis;
