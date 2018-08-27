@@ -37,10 +37,18 @@
 			<thead>
 				<tr bgcolor="skyblue">
 					<th>아이디</th>
+<<<<<<< HEAD
 					<!-- <th>비밀번호</th> -->
 					<th>이름</th>
 					<th>이메일</th>
 					<th>폰 번호</th>
+=======
+					<th>비밀번호</th>
+					<th>이름</th>
+					<th>이메일</th>
+					<th>폰 번호</th>
+					<th>주소</th>
+>>>>>>> 2f154e2918aec43d528e1cca882c64bc0354d9e7
 					<th>비밀번호 질문</th>
 					<th>비밀번호 답변</th>
 					<th>등급</th>
@@ -50,20 +58,31 @@
 			</thead>
 			<tbody id="tbody">
 				<c:forEach items="${list }" var="member">
+<<<<<<< HEAD
 				<c:if test="${member.id != 'admin'}" >
+=======
+>>>>>>> 2f154e2918aec43d528e1cca882c64bc0354d9e7
 					<tr>	
 						<td>${member.id }</td>
 						<%-- <td>${member.pw }</td> --%>
 						<td>${member.name }</td>
+						<td>${member.pw }</td>
 						<td>${member.email }</td>
 						<td>${member.phone }</td>
+<<<<<<< HEAD
+=======
+						<td>${member.addr }</td>
+>>>>>>> 2f154e2918aec43d528e1cca882c64bc0354d9e7
 						<td>${member.question }</td>
 						<td>${member.answer }</td>
 						<td>${member.rank }</td>
 						<td>${member.wdate }</td>
 						<td><a href="/Funshop/admin_member/memberEdit.do?id=${member.id }">삭제</a> </td>
 					</tr>
+<<<<<<< HEAD
 				</c:if>
+=======
+>>>>>>> 2f154e2918aec43d528e1cca882c64bc0354d9e7
 				</c:forEach>
 			</tbody>
 		</table>
